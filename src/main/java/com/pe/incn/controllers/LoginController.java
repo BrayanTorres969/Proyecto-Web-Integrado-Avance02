@@ -27,6 +27,7 @@ public class LoginController {
 
         if (usuarioLogin != null){
             System.out.println("login exitoso");
+            model.addAttribute("usuarioLogin", usuarioLogin);
             return "redirect:/home";
         }else {
             model.addAttribute("error", "Usuario o contraseña incorrectos. Inténtelo de nuevo.");
