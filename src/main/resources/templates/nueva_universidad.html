@@ -15,7 +15,8 @@
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<span th:if="${session.usuarioLogin}" th:text="${session.usuarioLogin.username}"
+				<span th:if="${session.usuarioLogin}"
+					th:text="${session.usuarioLogin.username}"
 					class="mr-2 d-none d-lg-inline text-white small"></span>
 
 			</div>
@@ -44,11 +45,16 @@
 				<div class="container-fluid px-4">
 
 					<!--  contenido propio empieza-->
-					<h1 class="text-center my-4">Sistema de Residentado</h1>
+					<section class="container">
+						<h1 class="text-center">Nueva universidad</h1>
+						<form th:action="@{guardarUniversidad}" th:object="${universidad}"
+							method="post">
+							<input type="text" class="form-control mb-4 col-4"
+								placeholder="Nombre de la Universidad" th:field="*{nombre}">
+							<button type="submit" class="btn btn-primary col-2">Registrar</button>
+						</form>
+					</section>
 					<!--  contenido propio termina-->
-					<div class="text-center">
-						<img th:src="@{/img/logo.png}" alt="Logo" class="img-fluid">
-					</div>
 				</div>
 			</main>
 			<div th:replace="partials/footer :: footer"></div>

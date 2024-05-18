@@ -15,7 +15,8 @@
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<span th:if="${session.usuarioLogin}" th:text="${session.usuarioLogin.username}"
+				<span th:if="${session.usuarioLogin}"
+					th:text="${session.usuarioLogin.username}"
 					class="mr-2 d-none d-lg-inline text-white small"></span>
 
 			</div>
@@ -44,11 +45,58 @@
 				<div class="container-fluid px-4">
 
 					<!--  contenido propio empieza-->
-					<h1 class="text-center my-4">Sistema de Residentado</h1>
-					<!--  contenido propio termina-->
-					<div class="text-center">
-						<img th:src="@{/img/logo.png}" alt="Logo" class="img-fluid">
+					<h1 class="mt-4">Listado de Universidades</h1>
+					<div class="card mb-4">
+						<div class="card-body">Esta página muestra una lista
+							completa de todos las universidades a las que pertenecen nuestros médicos residentes registrados en el sistema.</div>
 					</div>
+					<div class="card mb-4">
+						<div
+							class="card-header d-flex justify-content-between align-items-center">
+							<div>
+								<i class="fa-solid fa-school"></i> Universidad <a
+									th:href="@{/universidades}"><i class="btn fa-solid fa-rotate"></i></a>
+							</div>
+							<div>
+								<a th:href="@{/nuevaUniForm}"
+									class="btn btn-success btn-block mt-2"> <i
+									class="fa-solid fa-plus"></i> Agregar nuevo
+								</a>
+							</div>
+						</div>
+						<div class="card-body">
+							<table class="table table-striped table-responsive table-bordered">
+								<thead>
+									<tr>
+										<th style="width: 10px">ID</th>
+										<th>Nombre de la Institución</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="universidad : ${listaUniversidades}">
+										<td th:text="${universidad.id_universidad}"></td>
+										<td th:text="${universidad.nombre}"></td>
+										<td class="d-flex align-items-center">
+
+											<button 
+												class="btn btn-danger btn-block mt-2 mx-2">
+												<i class="fa-solid fa-trash"></i>
+											</button> <a
+											href="AccionPacienteServlet?id=<%=paciente.getId()%>&accion=editar"
+											class="btn btn-primary btn-block mt-2"> <i
+												class="fa-solid fa-pencil"></i>
+										</a>
+
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					<!--  contenido propio termina-->
 				</div>
 			</main>
 			<div th:replace="partials/footer :: footer"></div>
