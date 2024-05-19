@@ -25,4 +25,9 @@ public class UniversidadServiceImpl implements UniversidadService {
 		
 	}
 
+	@Override
+	public void deleteUniversidad(Long id) {
+		this.universidadRepository.deleteById(id);		
+	}
+
 }
