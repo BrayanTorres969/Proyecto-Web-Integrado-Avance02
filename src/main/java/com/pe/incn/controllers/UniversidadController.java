@@ -3,6 +3,7 @@ package com.pe.incn.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,9 +39,9 @@ public class UniversidadController {
 		return "redirect:/universidades";
 	}
 	
-	@GetMapping("/eliminarUniversidad")
+	@GetMapping("/eliminarUniversidad/{id_uni}")
 	public String eliminarUniversidad(@PathVariable(value="id_uni") Long id) {
-		//this.uniService.deleteUniversidad(id);
+		this.uniService.deleteUniversidad(id);
 		return "redirect:/universidades";
 	}
 

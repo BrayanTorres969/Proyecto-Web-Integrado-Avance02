@@ -79,14 +79,15 @@
 										<td th:text="${universidad.nombre}"></td>
 										<td class="d-flex align-items-center">
 
-											<button 
-												class="btn btn-danger btn-block mt-2 mx-2">
-												<i class="fa-solid fa-trash"></i>
-											</button> <a
-											href="AccionPacienteServlet?id=<%=paciente.getId()%>&accion=editar"
+											<a
+											href="#"
 											class="btn btn-primary btn-block mt-2"> <i
 												class="fa-solid fa-pencil"></i>
-										</a>
+											</a>
+											<button onclick="confirmarEliminar(this)" th:data-id="${universidad.id_universidad}"
+												class="btn btn-danger btn-block mt-2 mx-2">
+												<i class="fa-solid fa-trash"></i>
+											</button>
 
 										</td>
 
@@ -107,5 +108,52 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script th:src="@{/js/scripts.js}"></script>
+	<script>
+	
+		function confirmarEliminar(elemento) {
+			var idUni = elemento.getAttribute('data-id');
+			console.log(idUni);
+	        Swal.fire({
+	            title: '¿Estás seguro?',
+	            text: 'Esta acción no se puede deshacer.',
+	            icon: 'warning',
+	            showCancelButton: true,
+	            confirmButtonColor: '#3085d6',
+	            cancelButtonColor: '#d33',
+	            confirmButtonText: 'Eliminar'
+	        }).then((result) => {
+	            if (result.isConfirmed) {
+	                eliminarRegistro(idUni);
+	            }
+	        });
+	    }
+	
+	    function eliminarRegistro(idUni) {
+	        $.ajax({
+	            type: 'GET',
+	            url: '/eliminarUniversidad/' + idUni,
+	            success: function (data) {
+	                mostrarAlertaExitosa();
+	                setTimeout(function () {
+	                    //window.location.href = "universidades";
+	                }, 1000);
+	            },
+	            error: function (error) {
+	                console.error('Error al realizar la solicitud:', error);
+	            }
+	        });
+	    }
+	
+	    function mostrarAlertaExitosa() {
+	        Swal.fire({
+	            toast: true,
+	            icon: 'success',
+	            position: 'top-end',
+	            showConfirmButton: false,
+	            title: "Registro eliminado con éxito.",
+	            timer: 1000
+	        });
+	    }
+	</script>
 </body>
 </html>

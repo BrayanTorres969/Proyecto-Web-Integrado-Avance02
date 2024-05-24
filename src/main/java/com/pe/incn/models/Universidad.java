@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Universidad {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_universidad;
 	
 	@Column(name="nom_universidad",unique = true, nullable=false, length=250)
