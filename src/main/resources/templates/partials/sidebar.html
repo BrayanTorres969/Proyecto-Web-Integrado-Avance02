@@ -32,6 +32,25 @@
 									residente</a>
 							</nav>
 						</div>
+						<!-- Especialidades  -->
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseEspecialidades" aria-expanded="false"
+							aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fa-solid fa-stethoscope"></i>
+							</div> Especialidades
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapseEspecialidades"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" th:href="@{/especialidades}">Ver Especialidades</a> <a
+									class="nav-link" th:href="@{/nuevaEspForm}">Registrar
+									Especialidad</a>
+							</nav>
+						</div>
 						<!-- Universidades  -->
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseUni" aria-expanded="false"
