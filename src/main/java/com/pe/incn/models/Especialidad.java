@@ -1,8 +1,12 @@
 package com.pe.incn.models;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,6 +18,9 @@ public class Especialidad {
 	private String codigo;
 	@Column(unique=true, nullable=false, length=150)
 	private String descripcion;
+	
+	@OneToMany(mappedBy = "especialidad", cascade = CascadeType.ALL)
+    private List<Residente> residentes;
 	
 	public Especialidad() {
 	}
