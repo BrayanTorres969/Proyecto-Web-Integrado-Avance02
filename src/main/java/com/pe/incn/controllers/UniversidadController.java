@@ -33,7 +33,7 @@ public class UniversidadController {
 		return "nueva_universidad";
 	}
 	
-	@PostMapping("guardarUniversidad")
+	@PostMapping("/guardarUniversidad")
 	public String guardarEmpleado(@ModelAttribute("universidad") Universidad uni) {
 		uniService.saveUniversidad(uni);
 		return "redirect:/universidades";
@@ -43,6 +43,14 @@ public class UniversidadController {
 	public String eliminarUniversidad(@PathVariable(value="id_uni") Long id) {
 		this.uniService.deleteUniversidad(id);
 		return "redirect:/universidades";
+	}
+	
+	
+	@GetMapping("/actualizarUniversidad/{id_uni}")
+	public String actualizarUni(@PathVariable (value="id_uni")Long id,Model model) {
+		Universidad universidad = uniService.getUniByid(id);
+		model.addAttribute("universidad", universidad);
+				return "actualizar_uni";
 	}
 
 }

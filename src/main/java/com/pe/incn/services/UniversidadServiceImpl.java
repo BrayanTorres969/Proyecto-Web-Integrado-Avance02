@@ -30,4 +30,10 @@ public class UniversidadServiceImpl implements UniversidadService {
 		this.universidadRepository.deleteById(id);		
 	}
 
+	@Override
+	public Universidad getUniByid(Long id) {
+		// TODO Auto-generated method stub
+		return this.universidadRepository.getById(id);
+	}
+
 }
