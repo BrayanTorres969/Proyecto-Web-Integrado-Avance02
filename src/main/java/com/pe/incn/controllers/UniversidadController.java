@@ -31,7 +31,7 @@ public class UniversidadController {
 	}
 
 	@PostMapping("/guardarUniversidad")
-	public String guardarEmpleado(@ModelAttribute("universidad") Universidad uni) {
+	public String guardarUniversidad(@ModelAttribute("universidad") Universidad uni) {
 		uniService.saveUniversidad(uni);
 		return "redirect:/universidades";
 	}
