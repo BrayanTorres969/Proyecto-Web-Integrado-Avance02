@@ -49,6 +49,7 @@
 						<h1 class="text-center">Actualizar universidad</h1>
 						<form th:action="@{/guardarUniversidad}" th:object="${universidad}"
 							method="post">
+							<input type="hidden" th:field="*{id_universidad}">
 							<input type="text" class="form-control mb-4 col-4"
 								placeholder="Nombre de la Universidad" th:field="*{nombre}">
 							<button type="submit" class="btn btn-primary col-2">Actualizar</button>

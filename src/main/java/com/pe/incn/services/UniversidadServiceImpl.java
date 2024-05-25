@@ -32,8 +32,7 @@ public class UniversidadServiceImpl implements UniversidadService {
 
 	@Override
 	public Universidad getUniByid(Long id) {
-		// TODO Auto-generated method stub
-		return this.universidadRepository.getById(id);
+		return universidadRepository.findById(id).orElse(null);
 	}
 
 }
