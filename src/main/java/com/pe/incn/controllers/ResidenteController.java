@@ -1,5 +1,11 @@
 package com.pe.incn.controllers;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.pe.incn.models.Especialidad;
 import com.pe.incn.models.Residente;
 import com.pe.incn.services.EspecialidadService;
 import com.pe.incn.services.ResidenteService;
@@ -91,9 +96,9 @@ public class ResidenteController {
     @PostMapping("/residentes/{id}")
     public String actualizarResidente(@PathVariable(value="id") Long id,@ModelAttribute("residente") Residente res, Model modelo) {
     	Residente residenteExistente = residenteService.getResidenteById(id);
-    	//residenteExistente.setIdResidente(res.getIdResidente());
     	residenteExistente.setNombre(res.getNombre());
     	residenteExistente.setApellido(res.getApellido());
+    	residenteExistente.setDireccion(res.getDireccion());
     	residenteExistente.setFechaNacimiento(res.getFechaNacimiento());
     	residenteExistente.setFechaIngreso(res.getFechaIngreso());
     	residenteExistente.setUniversidad(res.getUniversidad());
@@ -101,6 +106,21 @@ public class ResidenteController {
     	
     	residenteService.updateResidente(residenteExistente);	
     	return "redirect:/residentes";
+    }
+    
+    @GetMapping("/residentes/perfil/{id}")
+    public String mostrarPerfilResi(@PathVariable(value = "id") Long id, Model model) {
+        Residente residente = residenteService.getResidenteById(id);
+
+     // Convertir java.sql.Date a java.time.LocalDate
+        Date fechaNacimiento = residente.getFechaNacimiento();
+        LocalDate fechaNacimientoLocalDate = fechaNacimiento.toLocalDate();
+
+        // Calcular la edad
+        int edad = Period.between(fechaNacimientoLocalDate, LocalDate.now()).getYears();      
+        model.addAttribute("residente", residente);
+        model.addAttribute("edad", edad);
+        return "perfil_residente";
     }
 
 }
