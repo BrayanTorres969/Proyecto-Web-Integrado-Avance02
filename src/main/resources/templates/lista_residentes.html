@@ -86,8 +86,12 @@
 										<td th:text="${#dates.format(residente.fechaIngreso, 'dd/MM/yyyy')}"></td>
 										<td th:text="${residente.especialidad.descripcion}"></td>
 										<td class="d-flex align-items-center">
+										<a th:href="@{/residentes/perfil/{id}(id=${residente.idResidente})}"
+											class="btn btn-secondary btn-block mt-2 mx-2"> <i
+												class="fa-solid fa-eye"></i>
+										</a>
 										<a th:href="@{/residentes/editar/{id}(id=${residente.idResidente})}"
-											class="btn btn-primary btn-block mt-2"> <i
+											class="btn btn-primary btn-block mt-2 ml-2"> <i
 												class="fa-solid fa-pencil"></i>
 										</a>
 

@@ -46,13 +46,14 @@
 
 					<!--  contenido propio empieza-->
 					<section class="container">
-						<h1 class="text-center">Actualizar universidad</h1>
+						<h1 class="text-center mt-2 mb-4">Actualizar universidad</h1>
 						<form th:action="@{/guardarUniversidad}" th:object="${universidad}"
 							method="post">
 							<input type="hidden" th:field="*{id_universidad}">
 							<input type="text" class="form-control mb-4 col-4"
 								placeholder="Nombre de la Universidad" th:field="*{nombre}">
 							<button type="submit" class="btn btn-primary col-2">Actualizar</button>
+							<a th:href="@{/universidades}" class="btn btn-secondary col-2"><i class="fa-solid fa-right-to-bracket"></i> Regresar</a>
 						</form>
 					</section>
 					<!--  contenido propio termina-->
