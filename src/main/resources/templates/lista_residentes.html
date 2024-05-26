@@ -83,7 +83,7 @@
 										<td th:text="${residente.dni}"></td>
 										<td th:text="${residente.nombre}"></td>
 										<td th:text="${residente.apellido}"></td>
-										<td th:text="${residente.fechaIngreso}"></td>
+										<td th:text="${#dates.format(residente.fechaIngreso, 'dd/MM/yyyy')}"></td>
 										<td th:text="${residente.especialidad.descripcion}"></td>
 										<td class="d-flex align-items-center">
 										<a
