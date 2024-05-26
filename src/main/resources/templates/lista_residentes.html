@@ -118,8 +118,8 @@
 	<script>
 	
 		function confirmarEliminar(elemento) {
-			var cod_esp = elemento.getAttribute('data-id');
-			console.log(cod_esp);
+			var id_residente = elemento.getAttribute('data-id');
+			console.log(id_residente);
 	        Swal.fire({
 	            title: '¿Estás seguro?',
 	            text: 'Esta acción no se puede deshacer.',
@@ -130,15 +130,15 @@
 	            confirmButtonText: 'Eliminar'
 	        }).then((result) => {
 	            if (result.isConfirmed) {
-	                eliminarRegistro(cod_esp);
+	                eliminarRegistro(id_residente);
 	            }
 	        });
 	    }
 	
-	    function eliminarRegistro(cod_esp) {
+	    function eliminarRegistro(id_residente) {
 	        $.ajax({
 	            type: 'GET',
-	            url: '/eliminarEspecialidad/' + cod_esp,
+	            url: '/eliminarResidente/' + id_residente,
 	            success: function (data) {
 	                mostrarAlertaExitosa();
 	                setTimeout(function () {
