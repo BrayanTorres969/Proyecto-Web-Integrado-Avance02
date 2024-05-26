@@ -36,4 +36,9 @@ public class ResidenteServiceImpl implements ResidenteService {
 		
 	}
 
+	@Override
+	public boolean existeConDni(String codigo) {
+		return residenteRepository.existsByDni(codigo);
+	}
+
 }

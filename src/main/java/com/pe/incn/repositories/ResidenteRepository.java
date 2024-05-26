@@ -22,5 +22,7 @@ public interface ResidenteRepository extends JpaRepository<Residente, Long>  {
     @Transactional
     @Query("UPDATE Residente r SET r.estado = 0 WHERE r.idResidente = :id")
     void softDeleteResidente(Long id);
+    
+    boolean existsByDni(String dni);
 
 }

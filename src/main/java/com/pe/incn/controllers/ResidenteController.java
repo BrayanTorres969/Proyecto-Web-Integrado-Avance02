@@ -50,13 +50,21 @@ public class ResidenteController {
 	        model.addAttribute("listaEspecialidades", especialidadService.getAllEspecialidades());
 	        return "nuevo_residente";
 	    }	    
-	 // Validar formato del DNI
+	    // Validar formato del DNI
 	    String dniPattern = "\\d{8}";
 	    if (!residente.getDni().matches(dniPattern)) {
 	        model.addAttribute("error", "El DNI debe tener exactamente 8 caracteres numéricos");
 	        model.addAttribute("listaUniversidades", universidadService.getAllUniversidades());
 	        model.addAttribute("listaEspecialidades", especialidadService.getAllEspecialidades());
 	        return "nuevo_residente";
+	    }
+	    
+	    if(residenteService.existeConDni(residente.getDni())) {
+	    	
+	    	model.addAttribute("error", "Este DNI ya esta en uso");
+	        model.addAttribute("listaUniversidades", universidadService.getAllUniversidades());
+	        model.addAttribute("listaEspecialidades", especialidadService.getAllEspecialidades());
+	        return "nuevo_residente";    	
 	    }
         residenteService.saveResidente(residente);
         return "redirect:/residentes";
