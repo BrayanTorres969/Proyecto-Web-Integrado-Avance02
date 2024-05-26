@@ -41,4 +41,10 @@ public class ResidenteServiceImpl implements ResidenteService {
 		return residenteRepository.existsByDni(codigo);
 	}
 
+	@Override
+	public void updateResidente(Residente residente) {
+		residenteRepository.save(residente);
+		
+	}
+
 }

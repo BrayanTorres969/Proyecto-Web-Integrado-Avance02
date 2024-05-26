@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.pe.incn.models.Especialidad;
 import com.pe.incn.models.Residente;
 import com.pe.incn.services.EspecialidadService;
 import com.pe.incn.services.ResidenteService;
@@ -76,14 +77,30 @@ public class ResidenteController {
         return "redirect:/residentes";
     }
     
-    /*
-    @GetMapping("/actualizarResidente/{id_residente}")
-    public String actualizarResidente(@PathVariable(value = "id_residente") Long id, Model model) {
+
+    @GetMapping("/residentes/editar/{id}")
+    public String mostrarFormActualizarResi(@PathVariable(value = "id") Long id, Model model) {
         Residente residente = residenteService.getResidenteById(id);
         model.addAttribute("residente", residente);
         model.addAttribute("listaUniversidades", universidadService.getAllUniversidades());
         model.addAttribute("listaEspecialidades", especialidadService.getAllEspecialidades());
         return "actualizar_residente";
-    }*/
+    }
+    
+    
+    @PostMapping("/residentes/{id}")
+    public String actualizarResidente(@PathVariable(value="id") Long id,@ModelAttribute("residente") Residente res, Model modelo) {
+    	Residente residenteExistente = residenteService.getResidenteById(id);
+    	//residenteExistente.setIdResidente(res.getIdResidente());
+    	residenteExistente.setNombre(res.getNombre());
+    	residenteExistente.setApellido(res.getApellido());
+    	residenteExistente.setFechaNacimiento(res.getFechaNacimiento());
+    	residenteExistente.setFechaIngreso(res.getFechaIngreso());
+    	residenteExistente.setUniversidad(res.getUniversidad());
+    	residenteExistente.setEspecialidad(res.getEspecialidad());
+    	
+    	residenteService.updateResidente(residenteExistente);	
+    	return "redirect:/residentes";
+    }
 
 }

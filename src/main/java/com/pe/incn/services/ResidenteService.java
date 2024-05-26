@@ -9,6 +9,7 @@ public interface ResidenteService {
 	List<Residente> getAllResidentes();
     Residente getResidenteById(Long id);
     void saveResidente(Residente residente);
+    void updateResidente(Residente residente);
     void deleteResidente(Long id);
     boolean existeConDni(String codigo);
 
